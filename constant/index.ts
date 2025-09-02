@@ -21,7 +21,7 @@ export const flatWeather = {
       weather: 60,
       weather_desc: "Hujan Ringan",
       weather_desc_en: "Light Rain",
-      wd_deg: 125,
+      wd_deg: 120,
       wd: "E",
       wd_to: "W",
       ws: 7.4,
