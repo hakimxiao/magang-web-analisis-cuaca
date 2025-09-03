@@ -13,7 +13,7 @@ const WindCard: React.FC<WindCardProps> = ({ location, windSpeed, direction, wd,
     <div className="w-full rounded-2xl mt-1">
       <div className="flex flex-col items-center gap-1">
         {/* Lokasi */}
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-white">{location}</h2>
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Kota {location}</h2>
 
         {/* Kecepatan angin */}
         <p className="text-lg font-bold text-blue-500"><span className="text-sm font-light text-gray-500">Kecepatan Angin</span> {windSpeed} km/h</p>

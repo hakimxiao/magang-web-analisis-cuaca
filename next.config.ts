@@ -1,12 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   webpack(config) {
+    // Rule untuk SVG pakai svgr
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
+
+    // Rule untuk JSON (opsional, Next.js sudah support by default)
+    config.module.rules.push({
+      test: /\.json$/,
+      type: "json", // biar diparse sebagai JSON murni
+    });
+
     return config;
   },
 };
