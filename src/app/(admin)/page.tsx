@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
 import type { Metadata } from "next";
 import { CuacaContainer } from "@/components/ecommerce/CuacaContainer";
 import React from "react";
