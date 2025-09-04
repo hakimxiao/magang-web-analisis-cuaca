@@ -1,4 +1,6 @@
 "use client";
+
+import { useTheme } from "@/context/ThemeContext";
 import React from "react";
 import Thermometer from "react-thermometer-component";
 
@@ -8,21 +10,30 @@ interface ThermometerUdaraProps {
   min?: number;
 }
 
-const ThermometerUdara: React.FC<ThermometerUdaraProps> = ({ suhu, max = 50, min = 0 }) => {
+const ThermometerUdara: React.FC<ThermometerUdaraProps> = ({ suhu, max = 50, min = 10 }) => {
+  const { theme } = useTheme();
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <Thermometer
-        theme="light"
-        value={suhu}
-        max={max}
-        min={min}
-        steps={5}
-        format="°C"
-        size="large"
-        height={200}
-      />
-      <p className="mt-2 text-gray-700 dark:text-gray-200 font-semibold">
-        Suhu Saat Ini: {suhu}°C
+    <div className="flex flex-col items-center justify-center mt-1">
+      <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Temperatur Udara</h2>
+      <p className="text-lg font-bold text-blue-500">
+        <span className="text-sm font-light text-gray-500">Derajat Suhu Udara</span> {suhu}°F
+      </p>
+
+      <div className="m-[15px]">
+        <Thermometer
+          theme={theme}
+          value={suhu}
+          max={max}
+          min={min}
+          steps={2}
+          format="°C"
+          size="medium"
+          height={160}
+        />
+
+      </div>
+      <p className="text-sm text-gray-500 mt-1">
+        Suhu Saat Ini: <span className="text-blue-500">{suhu}°C</span>
       </p>
     </div>
   );

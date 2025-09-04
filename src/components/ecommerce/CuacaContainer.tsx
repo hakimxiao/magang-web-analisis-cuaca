@@ -50,7 +50,7 @@ export const CuacaContainer = () => {
                 </div>
 
                 <div className="w-full">
-                    <KetebalanAwan visibility_nm={flatWeather.cuaca[0].vs} tutupan={flatWeather.cuaca[0].tcc} visibility={flatWeather.cuaca[0].vs_text}/>
+                    <KetebalanAwan visibility_nm={flatWeather.cuaca[0].vs} tutupan={flatWeather.cuaca[0].tcc} visibility={flatWeather.cuaca[0].vs_text} />
                 </div>
             </div>
 
