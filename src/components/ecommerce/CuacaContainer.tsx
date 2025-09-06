@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import Badge from "../ui/badge/Badge";
-import { ArrowDownIcon, ArrowUpIcon, BoxIconLine, GroupIcon, } from "@/icons";
 import { TiWeatherWindyCloudy, TiWeatherWindy, TiWeatherPartlySunny, TiWeatherSunny } from "react-icons/ti"
 import { flatWeather } from "../../../constant";
 import WindCompass from "../WindCompass";
@@ -13,7 +11,7 @@ import ThermometerUdara from "../card-cuaca-info/ThermometerUdara";
 
 export const CuacaContainer = () => {
     return (
-        <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 md:gap-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
             {/* <!-- Arah Angin Start --> */}
             <div className="rounded-2xl border border-gray-200 bg-white p-1 dark:border-gray-800 dark:bg-white/[0.03] md:p-2.5">
                 <div className="flex items-center justify-center h-11 bg-gray-100 rounded-xl dark:bg-gray-800 dark:text-white/90">

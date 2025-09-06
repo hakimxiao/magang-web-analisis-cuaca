@@ -1,44 +1,29 @@
 "use client";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-
-import type { Metadata } from "next";
 import { CuacaContainer } from "@/components/ecommerce/CuacaContainer";
 import React from "react";
 import MonthlyTarget from "@/components/ecommerce/MonthlyTarget";
-import MonthlySalesChart from "@/components/ecommerce/MonthlySalesChart";
 import StatisticsChart from "@/components/ecommerce/StatisticsChart";
 import RecentOrders from "@/components/ecommerce/RecentOrders";
 import DemographicCard from "@/components/ecommerce/DemographicCard";
 import FadeContent from "@/components/Animations/FadeContent/FadeContent";
-
-// export const metadata: Metadata = {
-//   title:
-//     "Next.js E-commerce Dashboard | TailAdmin - Next.js Dashboard Template",
-//   description: "This is Next.js Home for TailAdmin Dashboard Template",
-// };
-
+import { flatWeather } from "../../../constant";
+import ShortCuacaInfo from "@/components/ecommerce/ShortCuacaInfo";
 
 
 export default function Ecommerce() {
   return (
     <div className="grid grid-cols-12 gap-4 md:gap-6">
       <div className="col-span-12 space-y-6 xl:col-span-7">
-        <MonthlySalesChart />
-        
+        <ShortCuacaInfo lokasi={flatWeather.lokasi.kecamatan} suhu={flatWeather.cuaca[0].t} keadaan={flatWeather.cuaca[0].weather_desc} angin={flatWeather.cuaca[0].ws} kelembapan={flatWeather.cuaca[0].hu} visibility={flatWeather.cuaca[0].vs_text} />
 
-       <FadeContent blur duration={1000} delay={500}>
+
+        <FadeContent blur duration={1000} delay={500}>
           <CuacaContainer />
 
-       </FadeContent>
+        </FadeContent>
 
-       
+
       </div>
 
       <div className="col-span-12 xl:col-span-5">

@@ -33,6 +33,7 @@
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.542.0",
     "next": "15.2.3",
+    "ogl": "^1.0.11",
     "react": "^19.0.0",
     "react-apexcharts": "^1.7.0",
     "react-circular-progressbar": "^2.2.0",
