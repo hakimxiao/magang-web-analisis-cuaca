@@ -1,11 +1,14 @@
 @import 'tailwindcss';
 @import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap');
+
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
   --font-*: initial;
   --font-outfit: Outfit, sans-serif;
+  --font-epunda: "Epunda Slab", serif;
 
   --breakpoint-*: initial;
   --breakpoint-2xsm: 375px;
@@ -289,7 +292,13 @@
     display: none;
     -webkit-appearance: none;
   }
+
+  .font-epunda {
+    font-family: var(--font-epunda);
+    font-optical-sizing: auto;
+  }
 }
+
 
 /* third-party libraries CSS */
 .apexcharts-legend-text {

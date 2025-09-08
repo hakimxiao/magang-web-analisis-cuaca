@@ -15,19 +15,16 @@ export default function Ecommerce() {
   return (
     <div className="grid grid-cols-12 gap-4 md:gap-6">
       <div className="col-span-12 space-y-6 xl:col-span-7">
-        <ShortCuacaInfo lokasi={flatWeather.lokasi.kecamatan} suhu={flatWeather.cuaca[0].t} keadaan={flatWeather.cuaca[0].weather_desc} angin={flatWeather.cuaca[0].ws} kelembapan={flatWeather.cuaca[0].hu} visibility={flatWeather.cuaca[0].vs_text} />
-
+        <ShortCuacaInfo cuaca={flatWeather}  />
 
         <FadeContent blur duration={1000} delay={500}>
           <CuacaContainer />
 
         </FadeContent>
-
-
       </div>
 
       <div className="col-span-12 xl:col-span-5">
-        <MonthlyTarget />
+        <MonthlyTarget cuaca={flatWeather} />
       </div>
 
       <div className="col-span-12">

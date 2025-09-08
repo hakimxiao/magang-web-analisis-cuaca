@@ -81,7 +81,7 @@ const RainMap: React.FC<RainMapProps> = ({
             <TileLayer
               url={`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${owmKey}`}
               attribution="Weather layers © OpenWeatherMap"
-              opacity={0.9}
+              opacity={1}
             />
           </Overlay>
 
@@ -89,7 +89,7 @@ const RainMap: React.FC<RainMapProps> = ({
   <TileLayer
     url={`https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=${owmKey}`}
     attribution="Weather layers © OpenWeatherMap"
-    opacity={0.9}
+    opacity={1}
   />
 </Overlay>
 
@@ -97,7 +97,7 @@ const RainMap: React.FC<RainMapProps> = ({
   <TileLayer
     url={`https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=${owmKey}`}
     attribution="Weather layers © OpenWeatherMap"
-    opacity={0.9}
+    opacity={1}
   />
 </Overlay>
 
@@ -105,7 +105,7 @@ const RainMap: React.FC<RainMapProps> = ({
   <TileLayer
     url={`https://tile.openweathermap.org/map/humidity_new/{z}/{x}/{y}.png?appid=${owmKey}`}
     attribution="Weather layers © OpenWeatherMap"
-    opacity={0.9}
+    opacity={1}
   />
 </Overlay>
 
@@ -113,7 +113,7 @@ const RainMap: React.FC<RainMapProps> = ({
             <TileLayer
               url={`https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${owmKey}`}
               attribution="Weather layers © OpenWeatherMap"
-              opacity={0.9}
+              opacity={1}
             />
           </Overlay>
 
@@ -121,7 +121,7 @@ const RainMap: React.FC<RainMapProps> = ({
             <TileLayer
               url={`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${owmKey}`}
               attribution="Weather layers © OpenWeatherMap"
-              opacity={0.9}
+              opacity={1}
             />
           </Overlay>
         </LayersControl>

@@ -74,22 +74,22 @@ const TemperatureChart: React.FC<TemperatureChartProps> = ({ title = "Temperatur
     return (
         <div className="h-[230px] w-[310px] ml-4 bg-white/30 backdrop-blur-md rounded-xl shadow-md p-4">
             <Chart options={options} series={series} type="line" height={150} />
-            <div className="flex items-center justify-center gap-11">
+            <div className="flex items-center justify-center mt-2 gap-11">
                 <div className="text-slate-800 flex flex-col items-center ">
                     <h3>Pagi</h3>
-                    <p>{data[0].value}</p>
+                    <p>{data[0].value}°</p>
                 </div>
                 <div className="text-slate-800 flex flex-col items-center ">
                     <h3>Siang</h3>
-                    <p>{data[1].value}</p>
+                    <p>{data[1].value}°</p>
                 </div>
                 <div className="text-slate-800 flex flex-col items-center ">
                     <h3>Sore</h3>
-                    <p>{data[2].value}</p>
+                    <p>{data[2].value}°</p>
                 </div>
                 <div className="text-slate-800 flex flex-col items-center ">
                     <h3>Malam</h3>
-                    <p>{data[3].value}</p>
+                    <p>{data[3].value}°</p>
                 </div>
             </div>
 

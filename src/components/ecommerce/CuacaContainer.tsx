@@ -21,7 +21,7 @@ export const CuacaContainer = () => {
                 </div>
 
                 <div className="w-full">
-                    <WindCompass direction={flatWeather.cuaca[0].wd_deg} location="Palembang" windSpeed={flatWeather.cuaca[0].ws} wd={flatWeather.cuaca[0].wd} wd_to={flatWeather.cuaca[0].wd_to} />
+                    <WindCompass direction={flatWeather.data[0].cuaca[0][0].wd_deg} location="Palembang" windSpeed={flatWeather.data[0].cuaca[0][0].ws} wd={flatWeather.data[0].cuaca[0][0].wd} wd_to={flatWeather.data[0].cuaca[0][0].wd_to} />
                 </div>
             </div>
             {/* <!-- Arah Angin End --> */}
@@ -35,7 +35,7 @@ export const CuacaContainer = () => {
                 </div>
 
                 <div className="w-full">
-                    <GrafikKelembapan hu={flatWeather.cuaca[0].hu} lokasi={flatWeather.lokasi.desa} waktu={flatWeather.cuaca[0].local_datetime} />
+                    <GrafikKelembapan hu={flatWeather.data[0].cuaca[0][0].hu} lokasi={flatWeather.lokasi.desa} waktu={flatWeather.data[0].cuaca[0][0].local_datetime} />
                 </div>
             </div>
             {/* <!-- Kelembapan Udara End --> */}
@@ -48,7 +48,7 @@ export const CuacaContainer = () => {
                 </div>
 
                 <div className="w-full">
-                    <KetebalanAwan visibility_nm={flatWeather.cuaca[0].vs} tutupan={flatWeather.cuaca[0].tcc} visibility={flatWeather.cuaca[0].vs_text} />
+                    <KetebalanAwan visibility_nm={flatWeather.data[0].cuaca[0][0].vs} tutupan={flatWeather.data[0].cuaca[0][0].tcc} visibility={flatWeather.data[0].cuaca[0][0].vs_text} />
                 </div>
             </div>
 
@@ -61,7 +61,7 @@ export const CuacaContainer = () => {
                 </div>
 
                 <div className="w-full">
-                    <ThermometerUdara suhu={flatWeather.cuaca[0].t} />
+                    <ThermometerUdara suhu={flatWeather.data[0].cuaca[0][0].t} />
                 </div>
             </div>
             {/* <!-- parameter udara END --> */}
