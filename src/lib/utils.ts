@@ -20,3 +20,4 @@ export function getCurrentDateTime(): string {
     timeStyle: "medium",
   });
 }
+

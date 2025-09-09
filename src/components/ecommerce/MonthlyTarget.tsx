@@ -23,13 +23,13 @@ export default function MonthlyTarget({ cuaca }: {cuaca: CuacaProps}) {
   }
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-white/[0.03]">
-      <div className="px-5 pt-5 bg-white shadow-default rounded-2xl pb-11 dark:bg-gray-900 sm:px-6 sm:pt-6 bg-gradient-to-br">
+    <div className="h-[940px] p-5 rounded-4xl text-black dark:text-white border-2 border-gray-400shadow-md">
+      <div className="px-5 pt-5 rounded-2xl pb-11 dark:bg-transparent sm:px-6 sm:pt-6 bg-gradient-to-br">
         <div className="flex items-center justify-between mb-7">
           <div>
               <div className="flex items-center gap-2 ">
-                <PiCityLight className="size-7" />
-                <span className="font-outfit font-bold text-xl">{cuaca.lokasi.kecamatan}</span> 
+                <PiCityLight className="size-7"/>
+                <span className="font-outfit font-bold text-xl">Kecamatan {cuaca.lokasi.kecamatan}</span> 
               </div>
             
             <div className="ml-5 flex items-center gap-2 ">
@@ -57,10 +57,8 @@ export default function MonthlyTarget({ cuaca }: {cuaca: CuacaProps}) {
             </Dropdown>
           </div>
         </div>
-        <div className="relative ">
-          <div className="max-h-[820px] ">
-            <AnalisisCuacaCarausel />
-          </div>
+        <div>
+            <AnalisisCuacaCarausel dataCuaca={cuaca} />
         </div>
       </div>
 

@@ -15,8 +15,8 @@ const ThermometerUdara: React.FC<ThermometerUdaraProps> = ({ suhu, max = 50, min
   return (
     <div className="flex flex-col items-center justify-center mt-1">
       <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Temperatur Udara</h2>
-      <p className="text-lg font-bold text-blue-500">
-        <span className="text-sm font-light text-gray-500">Derajat Suhu Udara</span> {suhu}°F
+      <p className="text-sm font-light text-gray-500 mt-1">
+        Derajat Suhu Udara {suhu}°F
       </p>
 
       <div className="m-[15px]">
@@ -33,7 +33,7 @@ const ThermometerUdara: React.FC<ThermometerUdaraProps> = ({ suhu, max = 50, min
 
       </div>
       <p className="text-sm text-gray-500 mt-1">
-        Suhu Saat Ini: <span className="text-blue-500">{suhu}°C</span>
+        Suhu Saat Ini: {suhu}°C
       </p>
     </div>
   );

@@ -8,7 +8,7 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-export default function MonthlyTarget({hu, waktu, lokasi}: {hu: number, waktu: string, lokasi: string}) {
+export default function MonthlyTarget({hu, lokasi}: {hu: number, waktu: string, lokasi: string}) {
   const options: ApexOptions = {
     colors: ["#465FFF"],
     chart: {
@@ -60,16 +60,16 @@ export default function MonthlyTarget({hu, waktu, lokasi}: {hu: number, waktu: s
 
   return (
     <div className="rounded-2xl mt-1">
-      <div className=" rounded-2xl  flex flex-col items-center">    
+      <div className=" rounded-2xl flex flex-col items-center">    
             <h2 className="text-lg font-semibold text-gray-800 dark:text-white/90">
               Kelurahan {lokasi}
             </h2>
-            <p className="text-lg font-bold text-blue-500">
-              <span className="text-sm font-light text-gray-500">Persentase Humadity</span> {hu}%
-          </p>
+            <p className="text-sm font-light text-gray-500 mt-1">
+              Persentase Humadity {hu}%
+            </p>
 
-        <div className="relative">
-          <div className="max-h-[350px] mt-1">
+        <div className="relativ">
+          <div className="max-h-[350px] mt-3">
             <ReactApexChart
               options={options}
               series={[hu]}
@@ -78,9 +78,7 @@ export default function MonthlyTarget({hu, waktu, lokasi}: {hu: number, waktu: s
             />
           </div>
 
-          <span className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-[95%] rounded-full bg-success-50 px-3 py-1 text-xs font-medium text-success-600 dark:bg-success-500/15 dark:text-success-500">
-            {waktu}
-          </span>
+         
         </div>
       </div>
     </div>
