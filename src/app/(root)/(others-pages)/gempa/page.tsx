@@ -1,9 +1,12 @@
+import PetaGempaContainer from '@/components/maps/PetaGempaContainer'
 import React from 'react'
 
-const page = () => {
+const GempaPage = () => {
   return (
-    <div>page</div>
+    <section className='w-full'>
+      <PetaGempaContainer />
+    </section>
   )
 }
 
-export default page
+export default GempaPage 
