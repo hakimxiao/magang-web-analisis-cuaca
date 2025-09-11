@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { Volume2, Square } from "lucide-react";
 
 interface PlayWeatherVoiceProps {
   text: string;
@@ -13,14 +14,11 @@ export default function PresenterComponent({ text }: PlayWeatherVoiceProps) {
 
   const handlePlay = async () => {
     try {
-      console.log("DEBUG: text sebelum kirim TTS:", text);
-
       setLoading(true);
-
       const resp = await fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }), // HARUS object { text }
+        body: JSON.stringify({ text }),
       });
 
       if (!resp.ok) {
@@ -40,7 +38,6 @@ export default function PresenterComponent({ text }: PlayWeatherVoiceProps) {
 
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
-
       audio.onended = () => setIsPlaying(false);
 
       await audio.play();
@@ -61,21 +58,21 @@ export default function PresenterComponent({ text }: PlayWeatherVoiceProps) {
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-3 mb-3">
       <button
         onClick={handlePlay}
         disabled={loading || isPlaying}
-        className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
+        className="flex items-center gap-2 px-4 mx-auto py-2 rounded-lg bg-blue-300 text-white hover:bg-blue-400 disabled:opacity-50 shadow"
       >
-        {loading ? "Mempersiapkan suara..." : "Dengarkan Cuaca"}
+        {loading ? "⏳ Mempersiapkan..." : <><Volume2 size={18}/> Dengarkan</>}
       </button>
 
       {isPlaying && (
         <button
           onClick={handleStop}
-          className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
+          className="flex items-center gap-2 px-4 py-2 mx-auto rounded-lg bg-red-300 text-white hover:bg-red-400 shadow"
         >
-          Stop
+          <Square size={18}/> Stop
         </button>
       )}
     </div>
