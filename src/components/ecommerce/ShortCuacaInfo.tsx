@@ -1,4 +1,4 @@
-import { getCurrentTime } from "@/lib/utils";
+import { getCurrentTime } from "../../../lib/utils";
 import { IoLocationOutline, IoWaterOutline } from "react-icons/io5";
 import { MdOutlineVisibility } from "react-icons/md";
 import { TiWeatherWindy } from "react-icons/ti";
@@ -62,7 +62,7 @@ export default function ShortCuacaInfo({ cuaca }: { cuaca: CuacaProps }) {
                 <div className="mt-10 grid grid-cols-3 gap-3">
                   <div className="flex items-center">
                     <TiWeatherWindy className="size-6" />
-                    <h3>{cuaca.data[0].cuaca[0][0].ws}km/h</h3>
+                    <h3>{cuaca.data[0].cuaca[0][0].ws} km/h</h3>
                   </div>
                   <div className="ml-2 flex items-center">
                     <IoWaterOutline className="size-6" />

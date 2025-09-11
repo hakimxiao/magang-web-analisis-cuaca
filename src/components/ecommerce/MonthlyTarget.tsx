@@ -9,6 +9,7 @@ import { useState } from "react";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import AnalisisCuacaCarausel from "../AnalisisCuacaCarausel";
 import { CuacaProps } from "../../../types";
+import Link from "next/link";
 
 export default function MonthlyTarget({ cuaca }: {cuaca: CuacaProps}) {
 
@@ -45,14 +46,16 @@ export default function MonthlyTarget({ cuaca }: {cuaca: CuacaProps}) {
             <Dropdown
               isOpen={isOpen}
               onClose={closeDropdown}
-              className="w-40 p-2"
+              className="w-50"
             >
               <DropdownItem
                 tag="a"
                 onItemClick={closeDropdown}
-                className="flex w-full font-normal text-left text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+                className="flex items-center justify-center w-full font-normal text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
               >
-                Baca Oleh AI
+                  <Link href="#ai" >
+                    Ketahui Cuaca Lewat AI Presenter
+                  </Link>
               </DropdownItem>
             </Dropdown>
           </div>

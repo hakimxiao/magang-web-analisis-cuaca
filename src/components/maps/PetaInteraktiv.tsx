@@ -86,28 +86,28 @@ const RainMap: React.FC<RainMapProps> = ({
           </Overlay>
 
           <Overlay name="Wind (Angin)">
-  <TileLayer
-    url={`https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=${owmKey}`}
-    attribution="Weather layers © OpenWeatherMap"
-    opacity={1}
-  />
-</Overlay>
+            <TileLayer
+              url={`https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=${owmKey}`}
+              attribution="Weather layers © OpenWeatherMap"
+              opacity={1}
+            />
+          </Overlay>
 
-<Overlay name="Pressure (Tekanan)">
-  <TileLayer
-    url={`https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=${owmKey}`}
-    attribution="Weather layers © OpenWeatherMap"
-    opacity={1}
-  />
-</Overlay>
+          <Overlay name="Pressure (Tekanan)">
+            <TileLayer
+              url={`https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=${owmKey}`}
+              attribution="Weather layers © OpenWeatherMap"
+              opacity={1}
+            />
+          </Overlay>
 
-<Overlay name="Humidity (Kelembapan)">
-  <TileLayer
-    url={`https://tile.openweathermap.org/map/humidity_new/{z}/{x}/{y}.png?appid=${owmKey}`}
-    attribution="Weather layers © OpenWeatherMap"
-    opacity={1}
-  />
-</Overlay>
+          <Overlay name="Humidity (Kelembapan)">
+            <TileLayer
+              url={`https://tile.openweathermap.org/map/humidity_new/{z}/{x}/{y}.png?appid=${owmKey}`}
+              attribution="Weather layers © OpenWeatherMap"
+              opacity={1}
+            />
+          </Overlay>
 
           <Overlay name="Clouds">
             <TileLayer

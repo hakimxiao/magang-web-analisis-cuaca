@@ -48,3 +48,23 @@ export interface CuacaProps {
   lokasi: Lokasi;
   data: DataWilayah[];
 }
+
+interface SavedMessage {
+  role: "system" | "assistant";
+  content: string;
+}
+
+interface JamKeadaan {
+  jam: string;          // misalnya pakai local_datetime atau datetime
+  deskripsi: string;    // pakai weather_desc
+}
+
+interface PresenterComponentProps {
+  adm4?: string;
+  adm3?: string;
+  temperaturUdaraSaatIni: number;
+  kelembapanUdara: number;
+  visibility: string;
+  arahAngin: string;
+  jamDanKeadaan: JamKeadaan[]; // array of object
+}
