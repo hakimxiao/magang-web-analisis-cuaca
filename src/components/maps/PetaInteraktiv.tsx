@@ -15,14 +15,6 @@ export type RainMapProps = {
   showControls?: boolean;
 };
 
-/**
- * RainMap – Leaflet + OpenWeatherMap precipitation overlay for Next.js (TypeScript, React)
- *
- * Requirements:
- *  - npm i leaflet react-leaflet
- *  - Add NEXT_PUBLIC_OWM_KEY in .env.local
- *  - Ensure global CSS includes Leaflet styles (see app/globals.css or import here)
- */
 const RainMap: React.FC<RainMapProps> = ({
   center = [-2.9909, 104.7566], // Palembang
   zoom = 10,

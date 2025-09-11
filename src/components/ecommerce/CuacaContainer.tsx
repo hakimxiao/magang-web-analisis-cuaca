@@ -9,7 +9,7 @@ import { CuacaProps } from "../../../types";
 
 
 
-export const CuacaContainer = ({cuaca}: {cuaca: CuacaProps}) => {
+export const CuacaContainer = ({ cuaca }: { cuaca: CuacaProps }) => {
     return (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
             {/* <!-- Arah Angin Start --> */}
@@ -48,7 +48,7 @@ export const CuacaContainer = ({cuaca}: {cuaca: CuacaProps}) => {
                 </div>
 
                 <div className="w-full">
-                    <KetebalanAwan visibility_nm={cuaca.data[0].cuaca[0][0].vs} tutupan={cuaca.data[0].cuaca[0][0].tcc} visibility={cuaca.data[0].cuaca[0][0].vs_text} />
+                    <KetebalanAwan visibility_nm={cuaca.data[0].cuaca[0][0].vs} tutupan={cuaca.data[0].cuaca[0][0].tcc} visibility={cuaca.data[0].cuaca[0][0].vs_text} weather_desc={cuaca.data[0].cuaca[0][0].weather_desc} />
                 </div>
             </div>
 
@@ -56,7 +56,7 @@ export const CuacaContainer = ({cuaca}: {cuaca: CuacaProps}) => {
             <div className="rounded-2xl border border-gray-200 bg-white p-1 dark:border-gray-800 dark:bg-white/[0.03] md:p-2.5">
                 <div className="flex items-center justify-center h-11 bg-gray-100 rounded-xl dark:bg-gray-800 dark:text-white/90">
                     <TiWeatherSunny className="text-gray-800 size-8 dark:text-white/90 mr-1" />
-                    <p>Suhu dara</p>
+                    <p>Suhu Udara</p>
                 </div>
 
                 <div className="w-full">

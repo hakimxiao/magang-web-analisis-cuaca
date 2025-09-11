@@ -24,7 +24,7 @@ export default function MonthlyTarget({ cuaca }: {cuaca: CuacaProps}) {
   }
 
   return (
-    <div className="h-[940px] p-5 rounded-4xl text-black dark:text-white border-2 border-gray-400shadow-md">
+    <div className="h-[940px] p-5 rounded-4xl text-black dark:text-white border-2 border-gray-100 shadow-md mt-15">
       <div className="px-5 pt-5 rounded-2xl pb-11 dark:bg-transparent sm:px-6 sm:pt-6 bg-gradient-to-br">
         <div className="flex items-center justify-between mb-7">
           <div>

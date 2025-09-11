@@ -1,3 +1,4 @@
+
 import { Outfit } from 'next/font/google';
 import './globals.css';
 
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${outfit.className} dark:bg-gray-900`}>
         <ThemeProvider>
+        
           <SidebarProvider>{children}</SidebarProvider>
         </ThemeProvider>
       </body>

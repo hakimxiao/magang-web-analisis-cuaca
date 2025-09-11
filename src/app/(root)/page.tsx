@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import { CuacaContainer } from "@/components/ecommerce/CuacaContainer";
 import MonthlyTarget from "@/components/ecommerce/MonthlyTarget";
-import RecentOrders from "@/components/ecommerce/RecentOrders";
-import DemographicCard from "@/components/ecommerce/DemographicCard";
 import ShortCuacaInfo from "@/components/ecommerce/ShortCuacaInfo";
 import ForecastClient from "@/components/ForecastClient";
 import { hasilAnalisisCuaca } from "../../../lib/api/data.action";
@@ -249,10 +247,11 @@ export default function HomePage() {
   }, [adm3, adm4]);
 
   return (
-    <div className="grid grid-cols-12 gap-4 md:gap-6">
-      <div className="col-span-12 space-y-6 xl:col-span-7">
+    <div className="grid grid-cols-12 gap-4 md:gap-6 w-full">
+      {/* Bagian utama */}
+      <div className={`col-span-12 ${data ? "xl:col-span-7" : "xl:col-span-12"} space-y-6`}>
         {/* Select Kecamatan & Kelurahan */}
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
           {/* Kecamatan */}
           <select
             value={adm3}
@@ -293,19 +292,96 @@ export default function HomePage() {
             <CuacaContainer cuaca={data} />
           </>
         ) : (
-          <p className="text-gray-500">Silakan pilih kecamatan dan kelurahan.</p>
+          <section className="w-full">
+            <h2 className="text-3xl font-bold text-slate-700 dark:text-slate-200 mb-6 text-center">
+              🌦️ Pusat Informasi Cuaca
+            </h2>
+
+            <div className="grid grid-cols-12 gap-6 auto-rows-[220px] w-full">
+              {/* Video utama */}
+              <div className="col-span-12 md:col-span-7 row-span-2 rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.3)] relative group">
+                <video
+                  src="/video/hujan.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/60 via-black/20 to-transparent backdrop-blur-md p-4">
+                  <h3 className="text-white text-xl font-semibold drop-shadow-xl tracking-wide">
+                    Informasi Hujan di Palembang
+                  </h3>
+                  <p className="text-slate-200/90 text-sm">Update setiap 10 menit</p>
+                </div>
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-cyan-400/50 rounded-3xl transition-all duration-500"></div>
+              </div>
+
+              {/* Video 2 */}
+              <div className="col-span-12 md:col-span-5 row-span-3 rounded-3xl overflow-hidden shadow-lg relative group">
+                <video
+                  src="/video/temperatur.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute bottom-0 w-full bg-black/40 backdrop-blur-sm p-3">
+                  <h3 className="text-white font-semibold drop-shadow">🌡️ Suhu & Kelembapan</h3>
+                </div>
+                <div className="absolute inset-0 border border-transparent group-hover:border-purple-400/50 rounded-3xl transition-all duration-500"></div>
+              </div>
+
+              {/* Video 3 */}
+              <div className="col-span-12 md:col-span-7 row-span-1 rounded-3xl overflow-hidden shadow-lg relative group">
+                <video
+                  src="/video/angin.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 flex items-center justify-between px-6 bg-black/30 backdrop-blur-sm">
+                  <h3 className="text-white text-lg font-bold drop-shadow">💨 Arah Angin</h3>
+                  <span className="text-white/80 text-sm">Data BMKG</span>
+                </div>
+                <div className="absolute inset-0 border border-transparent group-hover:border-blue-400/50 rounded-3xl transition-all duration-500"></div>
+              </div>
+
+              {/* Video 4 */}
+              <div className="col-span-12 row-span-1 rounded-3xl overflow-hidden shadow-lg relative group">
+                <video
+                  src="/video/analisis.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute bottom-0 w-full bg-black/50 backdrop-blur-sm p-4">
+                  <h3 className="text-white font-semibold tracking-wide">
+                    ⏰ Ramalan 3 Jam & 3 Hari Kedepan
+                  </h3>
+                </div>
+                <div className="absolute inset-0 border border-transparent group-hover:border-emerald-400/50 rounded-3xl transition-all duration-500"></div>
+              </div>
+            </div>
+          </section>
+
         )}
       </div>
 
-      <div className="col-span-12 xl:col-span-5">
-        {data && <MonthlyTarget cuaca={data} />}
-      </div>
+      {/* Sidebar kanan hanya muncul kalau ada data */}
+      {data && (
+        <div className="col-span-12 xl:col-span-5">
+          <MonthlyTarget cuaca={data} />
+        </div>
+      )}
 
       <div className="col-span-12">{data && <ForecastClient cuaca={data} />}</div>
-
-      <div className="col-span-12 xl:col-span-5">{data && <DemographicCard />}</div>
-
-      <div className="col-span-12 xl:col-span-7">{data && <RecentOrders />}</div>
     </div>
   );
+
 }

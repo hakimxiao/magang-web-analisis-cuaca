@@ -8,7 +8,7 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-export default function MonthlyTarget({hu, lokasi}: {hu: number, waktu: string, lokasi: string}) {
+export default function MonthlyTarget({ hu, lokasi }: { hu: number, waktu: string, lokasi: string }) {
   const options: ApexOptions = {
     colors: ["#465FFF"],
     chart: {
@@ -60,13 +60,13 @@ export default function MonthlyTarget({hu, lokasi}: {hu: number, waktu: string, 
 
   return (
     <div className="rounded-2xl mt-1">
-      <div className=" rounded-2xl flex flex-col items-center">    
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-              Kelurahan {lokasi}
-            </h2>
-            <p className="text-sm font-light text-gray-500 mt-1">
-              Persentase Humadity {hu}%
-            </p>
+      <div className=" rounded-2xl flex flex-col items-center">
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-white/90">
+          Kelurahan {lokasi}
+        </h2>
+        <p className="text-sm font-light text-gray-500 mt-1">
+          Kelembapan {hu}%
+        </p>
 
         <div className="relativ">
           <div className="max-h-[350px] mt-3">
@@ -78,7 +78,7 @@ export default function MonthlyTarget({hu, lokasi}: {hu: number, waktu: string, 
             />
           </div>
 
-         
+
         </div>
       </div>
     </div>

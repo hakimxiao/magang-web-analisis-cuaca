@@ -51,7 +51,7 @@
     "recharts": "^3.1.2",
     "swiper": "^11.2.0",
     "tailwind-merge": "^2.6.0",
-    "zod": "^4.1.5"
+    "three": "^0.180.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
