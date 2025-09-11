@@ -58,21 +58,31 @@ export default function PresenterComponent({ text }: PlayWeatherVoiceProps) {
   };
 
   return (
-    <div className="flex gap-3 mb-3">
+    <div className="flex flex-col sm:flex-row justify-center gap-3 mb-3">
       <button
         onClick={handlePlay}
         disabled={loading || isPlaying}
-        className="flex items-center gap-2 px-4 mx-auto py-2 rounded-lg bg-blue-300 text-white hover:bg-blue-400 disabled:opacity-50 shadow"
+        className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg 
+                   bg-blue-500 text-white text-sm sm:text-base font-medium
+                   hover:bg-blue-600 disabled:opacity-50 shadow-md transition"
       >
-        {loading ? "⏳ Mempersiapkan..." : <><Volume2 size={18}/> Dengarkan</>}
+        {loading ? "⏳ Mempersiapkan..." : (
+          <>
+            <Volume2 size={18} />
+            Dengarkan
+          </>
+        )}
       </button>
 
       {isPlaying && (
         <button
           onClick={handleStop}
-          className="flex items-center gap-2 px-4 py-2 mx-auto rounded-lg bg-red-300 text-white hover:bg-red-400 shadow"
+          className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg 
+                     bg-red-500 text-white text-sm sm:text-base font-medium
+                     hover:bg-red-600 shadow-md transition"
         >
-          <Square size={18}/> Stop
+          <Square size={18} />
+          Stop
         </button>
       )}
     </div>
