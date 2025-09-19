@@ -49,12 +49,7 @@ export default function ForecastClient({ cuaca }: Props) {
     }
 
     try {
-      const baseUrl =
-        process.env.NEXT_PUBLIC_BASE_URL ||
-        process.env.BASE_URL ||
-        "http://localhost:3000";
-
-      const resp = await fetch(`${baseUrl}/api/forecast`, {
+      const resp = await fetch(`/api/forecast`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
