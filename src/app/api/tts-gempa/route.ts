@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     }
 
     const resp = await fetch(
-      "https://api.elevenlabs.io/v1/text-to-speech/RWiGLY9uXI70QL540WNd", // ganti voice sesuai preferensi
+      "https://api.elevenlabs.io/v1/text-to-speech/d888tBvGmQT2u05J1xTv", // ganti voice sesuai preferensi
       {
         method: "POST",
         headers: {
