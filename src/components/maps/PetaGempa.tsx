@@ -1,12 +1,20 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Circle,
+  useMapEvents,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L, { LatLngExpression, DivIcon } from "leaflet";
-import "./PetaGempa.css"; // untuk animasi pulse
+import "./PetaGempa.css";
 
-// Tipe data gempa
+// =====================
+// TIPE DATA
+// =====================
 interface Gempa {
   Tanggal: string;
   Jam: string;
@@ -22,7 +30,9 @@ interface Gempa {
   Shakemap: string;
 }
 
-// Marker pulse custom
+// =====================
+// ICON PULSE
+// =====================
 const pulseIcon: DivIcon = L.divIcon({
   className: "pulse-marker",
   iconSize: [20, 20],
@@ -31,65 +41,48 @@ const pulseIcon: DivIcon = L.divIcon({
 
 const PetaGempa: React.FC = () => {
   const [gempa, setGempa] = useState<Gempa | null>(null);
+  const [showInfo, setShowInfo] = useState(false);
+
   const indonesiaCenter: LatLngExpression = [-2.5, 118];
 
   const hasPlayedRef = useRef(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  // =====================
+  // FETCH GEMPA
+  // =====================
   useEffect(() => {
     const fetchGempa = async () => {
-      try {
-        const res = await fetch(
-          "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json"
-        );
-        const data = await res.json();
-        const gempaData = data.Infogempa.gempa;
-        setGempa(gempaData);
+      const res = await fetch(
+        "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json"
+      );
+      const data = await res.json();
+      const gempaData = data.Infogempa.gempa;
+      setGempa(gempaData);
 
-        // Auto-play TTS dengan teks yang lebih ramah AI
-        if (gempaData && !hasPlayedRef.current) {
-          hasPlayedRef.current = true;
+      if (gempaData && !hasPlayedRef.current) {
+        hasPlayedRef.current = true;
 
-          // Format teks TTS
-          const tanggal = gempaData.Tanggal.replace(/-/g, " ");
-          const jam = gempaData.Jam.split(" ")[0]; // hilangkan WIB untuk jelas
-          const wilayah = gempaData.Wilayah.replace(/[0-9]+ km/g, ""); // hilangkan angka km
-          const magnitudo = gempaData.Magnitude;
-          const kedalaman = gempaData.Kedalaman.replace("km", " kilometer");
-          const potensi = gempaData.Potensi;
+        const ttsText =
+          `Gempa terkini terjadi di ${gempaData.Wilayah}. ` +
+          `Magnitudo ${gempaData.Magnitude}, kedalaman ${gempaData.Kedalaman}.`;
 
-          const ttsText =
-            `Gempa terkini terjadi pada tanggal ${tanggal}, pukul ${jam}. ` +
-            `Wilayah pusat gempa berada di ${wilayah}. ` +
-            `Magnitudo gempa adalah ${magnitudo}. ` +
-            `Kedalaman gempa ${kedalaman}. ` +
-            `${potensi}.`;
+        try {
+          const audioResp = await fetch("/api/tts-gempa", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: ttsText }),
+          });
 
-          try {
-            const audioResp = await fetch("/api/tts-gempa", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ text: ttsText }),
-            });
-
-            if (audioResp.ok) {
-              const audioBlob = await audioResp.blob();
-              const audioUrl = URL.createObjectURL(audioBlob);
-
-              if (audioRef.current) {
-                audioRef.current.pause();
-                URL.revokeObjectURL(audioRef.current.src);
-              }
-
-              audioRef.current = new Audio(audioUrl);
-              audioRef.current.play();
-            }
-          } catch (err) {
-            console.error("Gagal play TTS gempa:", err);
+          if (audioResp.ok) {
+            const blob = await audioResp.blob();
+            const url = URL.createObjectURL(blob);
+            audioRef.current = new Audio(url);
+            audioRef.current.play();
           }
+        } catch (e) {
+          console.error("TTS gagal:", e);
         }
-      } catch (err) {
-        console.error("Gagal fetch atau play TTS gempa:", err);
       }
     };
 
@@ -102,49 +95,97 @@ const PetaGempa: React.FC = () => {
     return [lat, lng];
   };
 
+  // =====================
+  // CLOSE INFO SAAT KLIK MAP
+  // =====================
+  const MapClickHandler = () => {
+    useMapEvents({
+      click() {
+        setShowInfo(false);
+      },
+    });
+    return null;
+  };
+
   return (
-    <MapContainer
-      center={indonesiaCenter}
-      zoom={5}
-      scrollWheelZoom={true}
-      minZoom={3}
-      maxZoom={16}
-      className="w-full h-[65vh] rounded-3xl"
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
+    <div className="relative">
+      <MapContainer
+        center={indonesiaCenter}
+        zoom={5}
+        minZoom={3}
+        maxZoom={16}
+        className="w-full h-[65vh] rounded-3xl"
+      >
+        <MapClickHandler />
 
-      {gempa && getCoordinates(gempa.Coordinates) && (
-        <>
-          {/* Marker pulse */}
-          <Marker position={getCoordinates(gempa.Coordinates)!} icon={pulseIcon} />
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; OpenStreetMap contributors"
+        />
 
-          {/* Circle radius */}
-          <Circle
-            center={getCoordinates(gempa.Coordinates)!}
-            radius={50000}
-            pathOptions={{ color: "red", fillColor: "red", fillOpacity: 0.1 }}
-          />
+        {gempa && getCoordinates(gempa.Coordinates) && (
+          <>
+            <Marker
+              position={getCoordinates(gempa.Coordinates)!}
+              icon={pulseIcon}
+              eventHandlers={{
+                click: () => setShowInfo(true),
+              }}
+            />
 
-          {/* Popup */}
-          <Popup position={getCoordinates(gempa.Coordinates)!}>
-            <div className="p-3 rounded-xl shadow-lg border border-red-300 bg-white/90 backdrop-blur-sm">
-              <h2 className="font-bold text-red-600 text-lg mb-1">Gempa Terkini</h2>
-              <p className="text-sm">
-                <strong>Tanggal:</strong> {gempa.Tanggal} <br />
-                <strong>Jam:</strong> {gempa.Jam} <br />
-                <strong>Wilayah:</strong> {gempa.Wilayah} <br />
-                <strong>Magnitudo:</strong> {gempa.Magnitude} <br />
-                <strong>Kedalaman:</strong> {gempa.Kedalaman} <br />
-                <strong>Potensi:</strong> {gempa.Potensi}
-              </p>
-            </div>
-          </Popup>
-        </>
+            <Circle
+              center={getCoordinates(gempa.Coordinates)!}
+              radius={50000}
+              pathOptions={{
+                color: "red",
+                fillColor: "red",
+                fillOpacity: 0.1,
+              }}
+            />
+          </>
+        )}
+      </MapContainer>
+
+      {/* =====================
+          INFO CARD RESPONSIVE
+      ====================== */}
+      {gempa && showInfo && (
+        <div
+          className="
+            fixed bottom-0 left-0 right-0 z-[1000]
+            md:absolute md:bottom-6 md:left-6 md:right-auto
+            bg-white/95 backdrop-blur-md
+            rounded-t-3xl md:rounded-2xl
+            shadow-xl border border-red-300
+            p-4 md:p-5
+            max-h-[45vh] md:max-h-none
+            overflow-y-auto
+            animate-slide-up
+          "
+        >
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="font-bold text-red-600 text-lg">
+              🌋 Gempa Terkini
+            </h2>
+            <button
+              onClick={() => setShowInfo(false)}
+              className="text-gray-500 text-xl"
+            >
+              ✕
+            </button>
+          </div>
+
+          <p className="text-sm leading-relaxed">
+            <strong>Tanggal:</strong> {gempa.Tanggal} <br />
+            <strong>Jam:</strong> {gempa.Jam} <br />
+            <strong>Wilayah:</strong> {gempa.Wilayah} <br />
+            <strong>Magnitudo:</strong> {gempa.Magnitude} <br />
+            <strong>Kedalaman:</strong> {gempa.Kedalaman} <br />
+            <strong>Potensi:</strong> {gempa.Potensi}
+          </p>
+        </div>
       )}
-    </MapContainer>
+    </div>
   );
 };
 

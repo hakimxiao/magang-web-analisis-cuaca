@@ -69,7 +69,7 @@ const RainMap: React.FC<RainMapProps> = ({
           </BaseLayer>
 
           {/* OpenWeatherMap Overlays (free plan, model lama) */}
-          <Overlay checked name="Precipitation (rain)">
+          <Overlay checked name="Curah hujan">
             <TileLayer
               url={`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${owmKey}`}
               attribution="Weather layers © OpenWeatherMap"
@@ -77,7 +77,7 @@ const RainMap: React.FC<RainMapProps> = ({
             />
           </Overlay>
 
-          <Overlay name="Wind (Angin)">
+          <Overlay name="Angin">
             <TileLayer
               url={`https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=${owmKey}`}
               attribution="Weather layers © OpenWeatherMap"
@@ -85,7 +85,7 @@ const RainMap: React.FC<RainMapProps> = ({
             />
           </Overlay>
 
-          <Overlay name="Pressure (Tekanan)">
+          <Overlay name="Tekanan Udara">
             <TileLayer
               url={`https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=${owmKey}`}
               attribution="Weather layers © OpenWeatherMap"
@@ -93,7 +93,7 @@ const RainMap: React.FC<RainMapProps> = ({
             />
           </Overlay>
 
-          <Overlay name="Humidity (Kelembapan)">
+          <Overlay name="Kelembapan">
             <TileLayer
               url={`https://tile.openweathermap.org/map/humidity_new/{z}/{x}/{y}.png?appid=${owmKey}`}
               attribution="Weather layers © OpenWeatherMap"
@@ -101,7 +101,7 @@ const RainMap: React.FC<RainMapProps> = ({
             />
           </Overlay>
 
-          <Overlay name="Clouds">
+          <Overlay name="Tutupan Awan">
             <TileLayer
               url={`https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${owmKey}`}
               attribution="Weather layers © OpenWeatherMap"
@@ -109,7 +109,7 @@ const RainMap: React.FC<RainMapProps> = ({
             />
           </Overlay>
 
-          <Overlay name="Temperature">
+          <Overlay name="Temperatur Udara">
             <TileLayer
               url={`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${owmKey}`}
               attribution="Weather layers © OpenWeatherMap"

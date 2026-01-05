@@ -13,6 +13,8 @@ export default function NotificationDropdown() {
     setIsOpen(!isOpen);
   }
 
+  // TODO: HILANGKAN SEMUA HREF KE PROFILE
+
   function closeDropdown() {
     setIsOpen(false);
   }
